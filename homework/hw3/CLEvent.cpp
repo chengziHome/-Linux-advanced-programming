@@ -1,6 +1,8 @@
 #include "CLEvent.h"
 #include "CLCriticalSection.h"
 #include "CLLogger.h"
+#include <iostream>
+
 
 CLEvent::CLEvent() {
     m_Flag = 0;
@@ -9,6 +11,11 @@ CLEvent::CLEvent() {
 
 CLEvent::CLEvent(bool bSemaphore) {
     m_Flag = 0;
+    m_bSemaphore = bSemaphore;
+}
+
+CLEvent::CLEvent(bool bSemaphore, int k) {
+    m_Flag = k;
     m_bSemaphore = bSemaphore;
 }
 
@@ -52,6 +59,7 @@ CLStatus CLEvent::Wait() {
         } else {
             m_Flag = 0;
         }
+        std::cout << "m_Flag:" << m_Flag << std::endl;
     }
     catch (const char *str) {
         CLLogger::WriteLogMsg("In CLEvent::Wait(), exception arise", 0);

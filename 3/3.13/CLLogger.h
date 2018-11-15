@@ -5,43 +5,47 @@
 #include "CLStatus.h"
 
 /*
-ÓÃÓÚÏòÎÄ¼þLOG_FILE_NAMEÖÐ£¬¼ÇÂ¼ÈÕÖ¾ÐÅÏ¢
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½LOG_FILE_NAMEï¿½Ð£ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ö¾ï¿½ï¿½Ï¢
 */
-class CLLogger
-{
+class CLLogger {
 public:
-	static CLLogger* GetInstance();
-	static CLStatus WriteLogMsg(const char *pstrMsg, long lErrorCode);
-	CLStatus WriteLog(const char *pstrMsg, long lErrorCode);
-	CLStatus Flush();
+    static CLLogger *GetInstance();
+
+    static CLStatus WriteLogMsg(const char *pstrMsg, long lErrorCode);
+
+    CLStatus WriteLog(const char *pstrMsg, long lErrorCode);
+
+    CLStatus Flush();
 
 private:
-	static void OnProcessExit();
+    static void OnProcessExit();
 
-	CLStatus WriteMsgAndErrcodeToFile(const char *pstrMsg, const char *pstrErrcode);
+    CLStatus WriteMsgAndErrcodeToFile(const char *pstrMsg, const char *pstrErrcode);
 
-	static pthread_mutex_t *InitializeMutex();
-
-private:
-	CLLogger(const CLLogger&);
-	CLLogger& operator=(const CLLogger&);
-
-	CLLogger();
-	~CLLogger();
+    static pthread_mutex_t *InitializeMutex();
 
 private:
-	int m_Fd;
-	pthread_mutex_t *m_pMutexForWritingLog;
-	
-	static CLLogger *m_pLog;
-	static pthread_mutex_t *m_pMutexForCreatingLogger;
+    CLLogger(const CLLogger &);
+
+    CLLogger &operator=(const CLLogger &);
+
+    CLLogger();
+
+    ~CLLogger();
 
 private:
-	char *m_pLogBuffer;
-	unsigned int m_nUsedBytesForBuffer;
+    int m_Fd;
+    pthread_mutex_t *m_pMutexForWritingLog;
+
+    static CLLogger *m_pLog;
+    static pthread_mutex_t *m_pMutexForCreatingLogger;
 
 private:
-	bool m_bFlagForProcessExit;
+    char *m_pLogBuffer;
+    unsigned int m_nUsedBytesForBuffer;
+
+private:
+    bool m_bFlagForProcessExit;
 };
 
 #endif

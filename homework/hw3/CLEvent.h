@@ -17,6 +17,7 @@ public:
     CLEvent();
 
     explicit CLEvent(bool bSemaphore);
+    explicit CLEvent(bool bSemaphore,int k);
 
     virtual ~CLEvent();
 
