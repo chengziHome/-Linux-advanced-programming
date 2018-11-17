@@ -17,10 +17,8 @@ CLStatus CLMessageQueueByMyqueue::PushMessage(CLMessage *pMessage) {
         return CLStatus(-1, 0);
 
     m_Put_Event.Wait();
-    std::cout << "put a message 1" << std::endl;
 
     CLStatus s = Push(pMessage);
-    std::cout << "put a message 2" << std::endl;
 
     if(!s.IsSuccess()){
         CLLogger::WriteLogMsg("In CLMessageQueue::PushMessage(), Push error", 0);

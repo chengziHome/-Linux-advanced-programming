@@ -59,7 +59,6 @@ CLStatus CLEvent::Wait() {
         } else {
             m_Flag = 0;
         }
-        std::cout << "m_Flag:" << m_Flag << std::endl;
     }
     catch (const char *str) {
         CLLogger::WriteLogMsg("In CLEvent::Wait(), exception arise", 0);

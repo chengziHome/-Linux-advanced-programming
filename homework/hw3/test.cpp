@@ -93,29 +93,29 @@ int test(){
 
 
 int main() {
-    test();
+//    test();
 
 
-//
-//    CLMessageQueueByMyqueue q(10);
-//
-//    CLThread *t = new CLThread(new CLAdder, true);
-//    t->Run(&q);
-//
-//    CLAddMessage addmsg(2, 4);
-//    q.PushMessage(&addmsg);
-//
-//    CLAddMessage addmsg1(5, 4);
-//    q.PushMessage(&addmsg1);
-//
-//    CLAddMessage addmsg2(2, 9);
-//    q.PushMessage(&addmsg2);
-//
-//    CLQuitMessage quitmsg;
-//    q.PushMessage(&quitmsg);
-//
-//
-//    t->WaitForDeath();
+
+    CLMessageQueueByMyqueue q(10);
+
+    CLThread *t = new CLThread(new CLAdder, true);
+    t->Run(&q);
+
+    CLAddMessage addmsg(2, 4);
+    q.PushMessage(&addmsg);
+
+    CLAddMessage addmsg1(5, 4);
+    q.PushMessage(&addmsg1);
+
+    CLAddMessage addmsg2(2, 9);
+    q.PushMessage(&addmsg2);
+
+    CLQuitMessage quitmsg;
+    q.PushMessage(&quitmsg);
+
+
+    t->WaitForDeath();
 
     return 0;
 }
